@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 /* import java.nio.file.Files;
 import java.util.List; */
 import java.util.Random;
@@ -46,6 +47,8 @@ public class BadIOGUI {
         canvas.setLayout(new BorderLayout());
         canvas.add(canvas2, BorderLayout.CENTER);
         final JButton write = new JButton("Write on file");
+        final JButton read = new JButton("Read on file");
+        canvas2.add(read);
         canvas2.add(write);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,6 +73,14 @@ public class BadIOGUI {
                 }
             }
         });
+        read.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                if (Objects.nonNull(e.getActionCommand())) {
+                    System.out.println("The button has been pressed"); // NOPMD
+                }
+            }
+        });
     }
 
     private void display() {
@@ -91,7 +102,7 @@ public class BadIOGUI {
          * on screen. Results may vary, but it is generally the best choice.
          */
         frame.setLocationByPlatform(true);
-        /**
+        /*
          *  Resize the frame to the minimum size prior to displaying
          */
         frame.pack();
