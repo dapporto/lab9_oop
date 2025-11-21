@@ -11,12 +11,16 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+// import java.io.FileInputStream;
 import java.io.IOException;
+// import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
-/* import java.nio.file.Files;
-import java.util.List; */
+// import java.util.Objects;
+import java.nio.file.Files;
+import java.nio.file.Path;
+// import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -76,8 +80,11 @@ public class BadIOGUI {
         read.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                if (Objects.nonNull(e.getActionCommand())) {
-                    System.out.println("The button has been pressed"); // NOPMD
+                try {
+                    final List<String> text = Files.readAllLines(Path.of(PATH), StandardCharsets.UTF_8);
+                    System.out.println(text); // NOPMD
+                } catch (final IOException exception) {
+                    JOptionPane.showMessageDialog(frame, e, "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
