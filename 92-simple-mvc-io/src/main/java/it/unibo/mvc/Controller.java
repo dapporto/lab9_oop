@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class Controller {
     private File file; 
-    private final String path = System.getProperty("user.home") 
+    private String path = System.getProperty("user.home") 
                         + File.separator
                         + "output.txt";
 
@@ -30,6 +30,7 @@ public class Controller {
      */
     void setFile(final File file) {
         this.file = file;
+        this.path = file.getAbsolutePath();
     }
 
     /**

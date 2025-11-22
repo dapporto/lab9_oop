@@ -37,7 +37,6 @@ and if the result is equal to `JFileChooser.APPROVE_OPTION` the program should s
 If `CANCEL_OPTION` is returned, then the program should do nothing. 
 Otherwise, a message dialog should be shown telling the user that an error has occurred (use `JOptionPane.showMessageDialog()`).
 4. When in the controller a new `File` is set, also the graphical interface must reflect such change. 
-Suggestion: do not force the controller to update the UI: in this example the UI knows when should be updated, so
-try to keep things separated.
+Suggestion: do not force the controller to update the UI: in this example the UI knows when should be updated, so try to keep things separated.
 
 See `src/test/resources/ex03.png` to verify the expected aspect.

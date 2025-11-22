@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+/* import java.awt.image.TileObserver; */
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -17,9 +18,12 @@ import javax.swing.JTextArea;
  * 
  */
 public final class SimpleGUIWithFileChooser {
+    private static final String TITLE = "My second Java graphical interface";
     private static final int PROPORTION = 5;
-    private final JFrame frame = new JFrame();
+    private final JFrame frame = new JFrame(TITLE);
     private final Controller controller = new Controller(null);
+    private final JTextArea textArea;
+    private final JButton button;
 
     /**
      * Creates a new SimpleGuiFileChooser. 
@@ -31,25 +35,33 @@ public final class SimpleGUIWithFileChooser {
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new BorderLayout());
         panel1.add(panel2, BorderLayout.NORTH);
-        final JTextArea textArea = new JTextArea();
-        final JButton button = new JButton("Browse...");
+        textArea = new JTextArea();
+        button = new JButton("Browse...");
         panel2.add(textArea, BorderLayout.CENTER);
+        renameTextArea();
         panel2.add(button, BorderLayout.LINE_END);
         frame.setContentPane(panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         button.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(final ActionEvent e) {
                 final JFileChooser fileChooser = new JFileChooser();
                 final int saveChoice = fileChooser.showSaveDialog(panel2);
                 if (saveChoice == JFileChooser.APPROVE_OPTION) {
                     controller.setFile(fileChooser.getSelectedFile());
+                    renameTextArea();
                 } else {
-                    JOptionPane.showMessageDialog(button, e, "Error occurred", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(button, "Error occurred", "", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
+    }
+
+    /**
+     *  Rename the area with the current path.
+     */
+    public void renameTextArea() {
+        textArea.setText(controller.getPath());
     }
 
     private void display() {
