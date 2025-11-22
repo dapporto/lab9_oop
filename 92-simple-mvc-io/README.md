@@ -30,8 +30,7 @@ See `src/test/resources/ex02.png` to verify the expected aspect.
 Finally, implement `SimpleGUIWithFileChooser` class as follows:
 
 1. Add a `JTextField` and a button "Browse..." on the upper part of the graphical interface.
-Suggestion: use a second `JPanel` with a second `BorderLayout`, put the panel in the North of the main panel, 
-put the text field in the center of the new panel and put the button in the line_end of the new panel.
+Suggestion: use a second `JPanel` with a second `BorderLayout`, put the panel in the North of the main panel,  put the text field in the center of the new panel and put the button in the line_end of the new panel.
 2. The JTextField should be non modifiable. And, should display the current selected file.
 3. On press, the button should open a `JFileChooser`. The program should use the method `showSaveDialog()` to display the file chooser, 
 and if the result is equal to `JFileChooser.APPROVE_OPTION` the program should set as new file in the `Controller` the file chosen. 
